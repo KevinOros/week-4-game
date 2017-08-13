@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<title>Crystal Game</title>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+
+</head>
+<header >
+
+<div class="jumbotron">
+  <h1 style= "font-size: 80px">Crystal Game!</h1>
+  <p><h2 >Rules:</h2>
+        <div>You will be presented a number at the beginning of the game.</div>
+        <div> Clicking on one of the four crystals you will add a specific amount to the total score.</div>
+        <div>Win the game by matching your total score to the displayed number,if your total score goes above the displayed number... you lose!.</div>
+        <div>Click the crystals to find their hidden value.</div>
+        <div><h3>Click the Crystals to start!</h3></div>
+  </p>
+  
+</div>
+
+</header>
+
+<body>
+
+
+<p><span id="number"></span></p>
+
+<div id="numberToGuess"><h3>58</h3></div>
+
+<p><span id="yourNumber"></span></p>
+
+<div id="crystals">
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    var numberToGuess = 58;
+    var counter = 0;
+    var number1 = [15];
+    var number2 = [5];
+    var number3 = [3];
+    var number4 = [7];
+    $('number1 number2 number3 number4').text(numberToGuess);
+    for (var i=0; i< number1.length; i++){
+      var imageCrystalB = $('<img>');
+      
+      imageCrystalB.attr('data-num', number1[i]);
+      imageCrystalB.attr('src', 'http://ua.bootcampcontent.com/UA-Coding-Bootcamp/07-2017-Class-Repository-FSF/raw/111e158267200cdc3a32c462e1f5d43edcb0f081/04-jquery/02-Homework/Instructions/Images/blue.png');
+      imageCrystalB.attr('alt', 'blue crystal');
+      imageCrystalB.addClass('crystalImage');
+      $('#crystals').append(imageCrystalB);
+    }
+    for (var i=0; i< number2.length; i++){
+      var imageCrystalG = $('<img>');
+      
+      imageCrystalG.attr('data-num', number2[i]);
+      imageCrystalG.attr('src', 'http://ua.bootcampcontent.com/UA-Coding-Bootcamp/07-2017-Class-Repository-FSF/raw/111e158267200cdc3a32c462e1f5d43edcb0f081/04-jquery/02-Homework/Instructions/Images/green.png');
+      imageCrystalG.attr('alt', 'green crystal');
+      imageCrystalG.addClass('crystalImage');
+      $('#crystals').append(imageCrystalG);
+    }
+    for (var i=0; i< number3.length; i++){
+      var imageCrystalR = $('<img>');
+      
+      imageCrystalR.attr('data-num', number3[i]);
+      imageCrystalR.attr('src', 'http://ua.bootcampcontent.com/UA-Coding-Bootcamp/07-2017-Class-Repository-FSF/raw/111e158267200cdc3a32c462e1f5d43edcb0f081/04-jquery/02-Homework/Instructions/Images/red.png');
+      imageCrystalR.attr('alt', 'red crystal');
+      imageCrystalR.addClass('crystalImage');
+      $('#crystals').append(imageCrystalR);
+    }
+    for (var i=0; i< number4.length; i++){
+      var imageCrystalY = $('<img>');
+      
+      imageCrystalY.attr('data-num', number4[i]);
+      imageCrystalY.attr('src', 'http://ua.bootcampcontent.com/UA-Coding-Bootcamp/07-2017-Class-Repository-FSF/raw/111e158267200cdc3a32c462e1f5d43edcb0f081/04-jquery/02-Homework/Instructions/Images/yellow.png');
+      imageCrystalY.attr('alt', 'yellow crystal');
+      imageCrystalY.addClass('crystalImage');
+      $('#crystals').append(imageCrystalY);
+    }
+    
+    $('#reset').on('click', function(){
+        reset();
+    });
+    function reset(){
+      counter = 0;      
+      $('#yourNumber').text(counter);
+      number1 = [5];
+      number2 = [3];
+      number3 = [7];
+      number4 = [10];
+      $('number1 number2 number3 number4').text(numberToGuess);
+    };
+    $('.crystalImage').on('click', function(){
+      counter = counter + parseInt($(this).data('num'));
+      
+      $('#yourNumber').text(counter);
+      if (counter == numberToGuess){
+        alert('You won!');
+        reset();
+      }else if( counter > numberToGuess){
+        alert('You lost!');
+        reset();
+      }
+    });
+  
+  });
+</script>
+</body>
+  
+</html>
